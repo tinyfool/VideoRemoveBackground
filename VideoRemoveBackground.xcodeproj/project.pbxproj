@@ -1,0 +1,611 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15ACBD33274F229D0077B271 /* my30.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 15ACBD32274E874B0077B271 /* my30.mp4 */; };
+		15BB7222274DC33000C546EB /* VideoRemoveBackgroundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7221274DC33000C546EB /* VideoRemoveBackgroundApp.swift */; };
+		15BB7224274DC33000C546EB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7223274DC33000C546EB /* ContentView.swift */; };
+		15BB7226274DC33300C546EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BB7225274DC33300C546EB /* Assets.xcassets */; };
+		15BB7229274DC33300C546EB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BB7228274DC33300C546EB /* Preview Assets.xcassets */; };
+		15BB7234274DC33300C546EB /* VideoRemoveBackgroundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7233274DC33300C546EB /* VideoRemoveBackgroundTests.swift */; };
+		15BB723E274DC33300C546EB /* VideoRemoveBackgroundUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB723D274DC33300C546EB /* VideoRemoveBackgroundUITests.swift */; };
+		15BB7240274DC33300C546EB /* VideoRemoveBackgroundUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB723F274DC33300C546EB /* VideoRemoveBackgroundUITestsLaunchTests.swift */; };
+		15BB724D274DC38D00C546EB /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 15BB724C274DC38D00C546EB /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel */; };
+		15BB7251274DC74300C546EB /* VideoMatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7250274DC74300C546EB /* VideoMatting.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		15BB7230274DC33300C546EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15BB7216274DC33000C546EB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15BB721D274DC33000C546EB;
+			remoteInfo = VideoRemoveBackground;
+		};
+		15BB723A274DC33300C546EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15BB7216274DC33000C546EB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15BB721D274DC33000C546EB;
+			remoteInfo = VideoRemoveBackground;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15ACBD32274E874B0077B271 /* my30.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = my30.mp4; path = "../../../Downloads/频道-终生学习之路/131-鹤岗的房价为什么这么低/my30.mp4"; sourceTree = "<group>"; };
+		15BB721E274DC33000C546EB /* VideoRemoveBackground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoRemoveBackground.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		15BB7221274DC33000C546EB /* VideoRemoveBackgroundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRemoveBackgroundApp.swift; sourceTree = "<group>"; };
+		15BB7223274DC33000C546EB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		15BB7225274DC33300C546EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		15BB7228274DC33300C546EB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		15BB722A274DC33300C546EB /* VideoRemoveBackground.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VideoRemoveBackground.entitlements; sourceTree = "<group>"; };
+		15BB722F274DC33300C546EB /* VideoRemoveBackgroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoRemoveBackgroundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15BB7233274DC33300C546EB /* VideoRemoveBackgroundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRemoveBackgroundTests.swift; sourceTree = "<group>"; };
+		15BB7239274DC33300C546EB /* VideoRemoveBackgroundUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoRemoveBackgroundUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15BB723D274DC33300C546EB /* VideoRemoveBackgroundUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRemoveBackgroundUITests.swift; sourceTree = "<group>"; };
+		15BB723F274DC33300C546EB /* VideoRemoveBackgroundUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRemoveBackgroundUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		15BB724C274DC38D00C546EB /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel; path = ../../../Downloads/rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel; sourceTree = "<group>"; };
+		15BB7250274DC74300C546EB /* VideoMatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMatting.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15BB721B274DC33000C546EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15BB722C274DC33300C546EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15BB7236274DC33300C546EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15BB7215274DC33000C546EB = {
+			isa = PBXGroup;
+			children = (
+				15BB7220274DC33000C546EB /* VideoRemoveBackground */,
+				15BB7232274DC33300C546EB /* VideoRemoveBackgroundTests */,
+				15BB723C274DC33300C546EB /* VideoRemoveBackgroundUITests */,
+				15BB721F274DC33000C546EB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		15BB721F274DC33000C546EB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15BB721E274DC33000C546EB /* VideoRemoveBackground.app */,
+				15BB722F274DC33300C546EB /* VideoRemoveBackgroundTests.xctest */,
+				15BB7239274DC33300C546EB /* VideoRemoveBackgroundUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15BB7220274DC33000C546EB /* VideoRemoveBackground */ = {
+			isa = PBXGroup;
+			children = (
+				15BB724C274DC38D00C546EB /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel */,
+				15BB7221274DC33000C546EB /* VideoRemoveBackgroundApp.swift */,
+				15BB7223274DC33000C546EB /* ContentView.swift */,
+				15BB7250274DC74300C546EB /* VideoMatting.swift */,
+				15BB7225274DC33300C546EB /* Assets.xcassets */,
+				15ACBD32274E874B0077B271 /* my30.mp4 */,
+				15BB722A274DC33300C546EB /* VideoRemoveBackground.entitlements */,
+				15BB7227274DC33300C546EB /* Preview Content */,
+			);
+			path = VideoRemoveBackground;
+			sourceTree = "<group>";
+		};
+		15BB7227274DC33300C546EB /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				15BB7228274DC33300C546EB /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		15BB7232274DC33300C546EB /* VideoRemoveBackgroundTests */ = {
+			isa = PBXGroup;
+			children = (
+				15BB7233274DC33300C546EB /* VideoRemoveBackgroundTests.swift */,
+			);
+			path = VideoRemoveBackgroundTests;
+			sourceTree = "<group>";
+		};
+		15BB723C274DC33300C546EB /* VideoRemoveBackgroundUITests */ = {
+			isa = PBXGroup;
+			children = (
+				15BB723D274DC33300C546EB /* VideoRemoveBackgroundUITests.swift */,
+				15BB723F274DC33300C546EB /* VideoRemoveBackgroundUITestsLaunchTests.swift */,
+			);
+			path = VideoRemoveBackgroundUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		15BB721D274DC33000C546EB /* VideoRemoveBackground */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15BB7243274DC33300C546EB /* Build configuration list for PBXNativeTarget "VideoRemoveBackground" */;
+			buildPhases = (
+				15BB721A274DC33000C546EB /* Sources */,
+				15BB721B274DC33000C546EB /* Frameworks */,
+				15BB721C274DC33000C546EB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VideoRemoveBackground;
+			productName = VideoRemoveBackground;
+			productReference = 15BB721E274DC33000C546EB /* VideoRemoveBackground.app */;
+			productType = "com.apple.product-type.application";
+		};
+		15BB722E274DC33300C546EB /* VideoRemoveBackgroundTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15BB7246274DC33300C546EB /* Build configuration list for PBXNativeTarget "VideoRemoveBackgroundTests" */;
+			buildPhases = (
+				15BB722B274DC33300C546EB /* Sources */,
+				15BB722C274DC33300C546EB /* Frameworks */,
+				15BB722D274DC33300C546EB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15BB7231274DC33300C546EB /* PBXTargetDependency */,
+			);
+			name = VideoRemoveBackgroundTests;
+			productName = VideoRemoveBackgroundTests;
+			productReference = 15BB722F274DC33300C546EB /* VideoRemoveBackgroundTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		15BB7238274DC33300C546EB /* VideoRemoveBackgroundUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15BB7249274DC33300C546EB /* Build configuration list for PBXNativeTarget "VideoRemoveBackgroundUITests" */;
+			buildPhases = (
+				15BB7235274DC33300C546EB /* Sources */,
+				15BB7236274DC33300C546EB /* Frameworks */,
+				15BB7237274DC33300C546EB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15BB723B274DC33300C546EB /* PBXTargetDependency */,
+			);
+			name = VideoRemoveBackgroundUITests;
+			productName = VideoRemoveBackgroundUITests;
+			productReference = 15BB7239274DC33300C546EB /* VideoRemoveBackgroundUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		15BB7216274DC33000C546EB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					15BB721D274DC33000C546EB = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					15BB722E274DC33300C546EB = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 15BB721D274DC33000C546EB;
+					};
+					15BB7238274DC33300C546EB = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 15BB721D274DC33000C546EB;
+					};
+				};
+			};
+			buildConfigurationList = 15BB7219274DC33000C546EB /* Build configuration list for PBXProject "VideoRemoveBackground" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 15BB7215274DC33000C546EB;
+			productRefGroup = 15BB721F274DC33000C546EB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				15BB721D274DC33000C546EB /* VideoRemoveBackground */,
+				15BB722E274DC33300C546EB /* VideoRemoveBackgroundTests */,
+				15BB7238274DC33300C546EB /* VideoRemoveBackgroundUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15BB721C274DC33000C546EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15ACBD33274F229D0077B271 /* my30.mp4 in Resources */,
+				15BB7229274DC33300C546EB /* Preview Assets.xcassets in Resources */,
+				15BB7226274DC33300C546EB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15BB722D274DC33300C546EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15BB7237274DC33300C546EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15BB721A274DC33000C546EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15BB7251274DC74300C546EB /* VideoMatting.swift in Sources */,
+				15BB724D274DC38D00C546EB /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel in Sources */,
+				15BB7224274DC33000C546EB /* ContentView.swift in Sources */,
+				15BB7222274DC33000C546EB /* VideoRemoveBackgroundApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15BB722B274DC33300C546EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15BB7234274DC33300C546EB /* VideoRemoveBackgroundTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15BB7235274DC33300C546EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15BB7240274DC33300C546EB /* VideoRemoveBackgroundUITestsLaunchTests.swift in Sources */,
+				15BB723E274DC33300C546EB /* VideoRemoveBackgroundUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		15BB7231274DC33300C546EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15BB721D274DC33000C546EB /* VideoRemoveBackground */;
+			targetProxy = 15BB7230274DC33300C546EB /* PBXContainerItemProxy */;
+		};
+		15BB723B274DC33300C546EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15BB721D274DC33000C546EB /* VideoRemoveBackground */;
+			targetProxy = 15BB723A274DC33300C546EB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		15BB7241274DC33300C546EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		15BB7242274DC33300C546EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		15BB7244274DC33300C546EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VideoRemoveBackground/VideoRemoveBackground.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"VideoRemoveBackground/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ourcoders.VideoRemoveBackground;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		15BB7245274DC33300C546EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VideoRemoveBackground/VideoRemoveBackground.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"VideoRemoveBackground/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ourcoders.VideoRemoveBackground;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		15BB7247274DC33300C546EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ourcoders.VideoRemoveBackgroundTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VideoRemoveBackground.app/Contents/MacOS/VideoRemoveBackground";
+			};
+			name = Debug;
+		};
+		15BB7248274DC33300C546EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ourcoders.VideoRemoveBackgroundTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VideoRemoveBackground.app/Contents/MacOS/VideoRemoveBackground";
+			};
+			name = Release;
+		};
+		15BB724A274DC33300C546EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ourcoders.VideoRemoveBackgroundUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = VideoRemoveBackground;
+			};
+			name = Debug;
+		};
+		15BB724B274DC33300C546EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ourcoders.VideoRemoveBackgroundUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = VideoRemoveBackground;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		15BB7219274DC33000C546EB /* Build configuration list for PBXProject "VideoRemoveBackground" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15BB7241274DC33300C546EB /* Debug */,
+				15BB7242274DC33300C546EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15BB7243274DC33300C546EB /* Build configuration list for PBXNativeTarget "VideoRemoveBackground" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15BB7244274DC33300C546EB /* Debug */,
+				15BB7245274DC33300C546EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15BB7246274DC33300C546EB /* Build configuration list for PBXNativeTarget "VideoRemoveBackgroundTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15BB7247274DC33300C546EB /* Debug */,
+				15BB7248274DC33300C546EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15BB7249274DC33300C546EB /* Build configuration list for PBXNativeTarget "VideoRemoveBackgroundUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15BB724A274DC33300C546EB /* Debug */,
+				15BB724B274DC33300C546EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 15BB7216274DC33000C546EB /* Project object */;
+}
