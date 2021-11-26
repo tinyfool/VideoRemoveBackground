@@ -17,12 +17,16 @@ import AVKit
 func pixelBuffer2Image(buffer:CVPixelBuffer) -> NSImage {
     
     let ciImage = CIImage.init(cvPixelBuffer: buffer)
+    return ciImage2Image(ciImage: ciImage)
+}
+
+func ciImage2Image(ciImage:CIImage) -> NSImage {
+    
     let rep = NSCIImageRep(ciImage: ciImage)
     let nsImage = NSImage(size: rep.size)
     nsImage.addRepresentation(rep)
     return nsImage
 }
-
 
 class VideoMatting: NSObject {
 
@@ -38,9 +42,28 @@ class VideoMatting: NSObject {
         
         guard let result = try? model.prediction(input: input) else {return nil}
         
-        return pixelBuffer2Image(buffer: result.pha)
+        guard let transImage = makeTransparentImage(imageBuffer: result.fgr, maskBuffer: result.pha) else {return nil}
+        if srcImage.size == transImage.size {
+            
+            return transImage
+        }
+        let resizedImage = transImage.copy(size: srcImage.size)
+        return resizedImage
     }
         
+    func makeTransparentImage(imageBuffer:CVPixelBuffer, maskBuffer:CVPixelBuffer) -> NSImage? {
+        
+        let fgrImage = CIImage.init(cvPixelBuffer: imageBuffer)
+        let maskImage = CIImage.init(cvPixelBuffer: maskBuffer)
+        guard let maskFilter = CIFilter(name: "CIMaskToAlpha") else {return nil}
+        maskFilter.setValue(maskImage, forKey: kCIInputImageKey)
+        let alphaMaskImage = maskFilter.outputImage
+        guard let blendFilter = CIFilter(name: "CIBlendWithAlphaMask") else {return nil}
+        blendFilter.setValue(fgrImage, forKey: kCIInputImageKey)
+        blendFilter.setValue(alphaMaskImage, forKey: kCIInputMaskImageKey)
+        guard let outImage = blendFilter.outputImage else {return nil}
+        return ciImage2Image(ciImage: outImage)
+    }
     
     //TODO: 完成视频处理能力
     func videoRemoveBackground() {
@@ -183,3 +206,4 @@ class RemoveBackgroundCompositor:NSObject, AVVideoCompositing {
 
     }
 }
+

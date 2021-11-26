@@ -92,15 +92,16 @@ struct ContentView: View {
             if image != nil {
                 Image(nsImage: image!)
                     .resizable()
+                    .aspectRatio(contentMode: .fit)
                     .frame(width: 384, height: 216, alignment: Alignment.center)
-                    .scaledToFit()
             } else {
                 ImageVideoRect
             }
             if((imageBackgroundRemoved) != nil) {
-                Image(nsImage: imageBackgroundRemoved!).resizable()
+                Image(nsImage: imageBackgroundRemoved!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
                     .frame(width: 384, height: 216, alignment: Alignment.center)
-                    .scaledToFit()
             }else {
                 ImageVideoRect
             }
@@ -133,7 +134,7 @@ struct ContentView: View {
                     }
                 }
             } label: {
-                Text("Open Image File...")
+                Text("Select Image...")
                     .padding()
             }.padding()
 
