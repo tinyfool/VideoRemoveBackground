@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		158D5AA727508BFE00E76918 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158D5AA627508BFE00E76918 /* ImageExtensions.swift */; };
-		15ACBD33274F229D0077B271 /* my30.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 15ACBD32274E874B0077B271 /* my30.mp4 */; };
 		15BB7222274DC33000C546EB /* VideoRemoveBackgroundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7221274DC33000C546EB /* VideoRemoveBackgroundApp.swift */; };
 		15BB7224274DC33000C546EB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7223274DC33000C546EB /* ContentView.swift */; };
 		15BB7226274DC33300C546EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BB7225274DC33300C546EB /* Assets.xcassets */; };
@@ -39,7 +38,6 @@
 
 /* Begin PBXFileReference section */
 		158D5AA627508BFE00E76918 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
-		15ACBD32274E874B0077B271 /* my30.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = my30.mp4; path = "../../../Downloads/频道-终生学习之路/131-鹤岗的房价为什么这么低/my30.mp4"; sourceTree = "<group>"; };
 		15BB721E274DC33000C546EB /* VideoRemoveBackground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoRemoveBackground.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BB7221274DC33000C546EB /* VideoRemoveBackgroundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRemoveBackgroundApp.swift; sourceTree = "<group>"; };
 		15BB7223274DC33000C546EB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 				15BB7250274DC74300C546EB /* VideoMatting.swift */,
 				158D5AA627508BFE00E76918 /* ImageExtensions.swift */,
 				15BB7225274DC33300C546EB /* Assets.xcassets */,
-				15ACBD32274E874B0077B271 /* my30.mp4 */,
 				15BB722A274DC33300C546EB /* VideoRemoveBackground.entitlements */,
 				15BB7227274DC33300C546EB /* Preview Content */,
 			);
@@ -245,7 +242,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15ACBD33274F229D0077B271 /* my30.mp4 in Resources */,
 				15BB7229274DC33300C546EB /* Preview Assets.xcassets in Resources */,
 				15BB7226274DC33300C546EB /* Assets.xcassets in Resources */,
 			);

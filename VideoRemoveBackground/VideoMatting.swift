@@ -150,12 +150,6 @@ class RemoveBackgroundCompositor:NSObject, AVVideoCompositing {
             return
         }
         
-        guard let outputPixelBuffer = request.renderContext.newPixelBuffer() else {
-            print("No valid pixel buffer found. Returning.")
-            request.finish(with: CustomCompositorError.ciFilterFailedToProduceOutputImage)
-            return
-        }
-
         let sourceCount = requiredTrackIDs.count
 
         if sourceCount > 1 {
@@ -172,22 +166,8 @@ class RemoveBackgroundCompositor:NSObject, AVVideoCompositing {
                 request.finish(with: CustomCompositorError.CoreMLError)
                 return
             }
-            let destImage = CIImage(cvPixelBuffer: result.pha)
-            render(ciImage: destImage, destBuffer: outputPixelBuffer)
             request.finish(withComposedVideoFrame: result.pha)
         }
-    }
-    
-    func render(ciImage:CIImage,destBuffer:CVPixelBuffer) {
-        
-        let renderDestination = CIRenderDestination(pixelBuffer: destBuffer)
-        do {
-            
-            try coreImageContext.startTask(toRender: ciImage, to: renderDestination)
-        } catch {
-            print("Error starting request: \(error)")
-        }
-
     }
 }
 
