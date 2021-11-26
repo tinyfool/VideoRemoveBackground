@@ -12,8 +12,9 @@ struct ContentView: View {
     @State private var imageBackgroundRemoved:NSImage?
     @State private var backGroundMode = 1
     @State private var color = Color.green
+    @State private var imageProcessing = false
     
-    var model = VideoMatting()
+    private var model = VideoMatting()
     
     var body: some View {
         TabView() {
@@ -103,7 +104,16 @@ struct ContentView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 384, height: 216, alignment: Alignment.center)
             }else {
-                ImageVideoRect
+                ZStack {
+
+                    if self.imageProcessing {
+                        VStack {
+                            Text("processing...")
+                            ProgressView()
+                        }
+                    }
+                    ImageVideoRect
+                }
             }
         }
         .padding()
@@ -129,14 +139,24 @@ struct ContentView: View {
                     guard let imageFile = panel.url else {return}
                     self.image = NSImage(contentsOf:imageFile)
                     if self.image != nil {
-                        self.imageBackgroundRemoved =
-                        self.model.imageRemoveBackGround(srcImage: self.image!)
+                        self.imageBackgroundRemoved = nil
+                        self.imageProcessing = true
+                        DispatchQueue.global(qos: .background).async {
+                            let newImage =
+                            self.model.imageRemoveBackGround(srcImage: self.image!)
+                            DispatchQueue.main.async {
+                                self.imageBackgroundRemoved = newImage
+                                self.imageProcessing = false
+                            }
+                        }
                     }
                 }
             } label: {
                 Text("Select Image...")
                     .padding()
-            }.padding()
+            }
+            .disabled(self.imageProcessing)
+            .padding()
 
             Button {
                 let panel = NSSavePanel()
@@ -150,6 +170,7 @@ struct ContentView: View {
                 Text("Save as...")
                     .padding()
             }
+            .disabled(self.imageBackgroundRemoved == nil)
             .padding()
         }
     }
