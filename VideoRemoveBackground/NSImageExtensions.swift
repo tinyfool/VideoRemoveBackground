@@ -2,7 +2,7 @@
 //  NSImageExtensions.swift
 //  VideoRemoveBackground
 //
-//  Created by HaoPeiqiang on 2021/11/26.
+//  copy from https://gist.github.com/MaciejGad/11d8469b218817290ee77012edb46608
 //
 
 import Foundation
