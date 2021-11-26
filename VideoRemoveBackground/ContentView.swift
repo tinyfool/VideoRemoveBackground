@@ -18,17 +18,17 @@ struct ContentView: View {
     
     var body: some View {
         TabView() {
-            VStack {
-                imageView
-                imageViewButtons
-            }.tabItem { Text("Image") }.tag(2)
-            VStack() {
+            VStack(alignment:.center) {
                 videoView
                 videoViewButtonPanel
                 Spacer()
             }
             .tabItem { Text("Video") }.tag(1)
-            .padding()
+            VStack {
+                imageView
+                imageViewButtons
+                Spacer()
+            }.tabItem { Text("Image") }.tag(2)
         }
         .padding()
     }
@@ -48,44 +48,61 @@ struct ContentView: View {
                 Rectangle()
                     .frame(width: 384, height: 216, alignment: Alignment.center)
             }
-        }
+        }.padding()
     }
     
     var videoViewButtonPanel : some View {
-        
         HStack(alignment: .top){
-            Picker(selection: $backGroundMode, label: Text("Mode")) {
-                Text("Transparent").tag(1)
-                Text("Color").tag(2)
-                Text("Image").tag(3)
-            }
-            .pickerStyle(RadioGroupPickerStyle())
-            .padding()
-            .onChange(of: backGroundMode) { mode in
-                
-            }
-            VStack {
-                if(backGroundMode == 1) {
-                    Text("")
+            GroupBox(label: Text("Options")) {
+                HStack {
+                    Picker(selection: $backGroundMode, label: Text("Mode")) {
+                        Text("Transparent").tag(1)
+                        Text("Color").tag(2)
+                        Text("Image").tag(3)
+                    }
+                    .pickerStyle(RadioGroupPickerStyle())
+                    .padding()
+                    .onChange(of: backGroundMode) { mode in
+                        
+                    }
+                    VStack {
+                        if(backGroundMode == 1) {
+                            Text("")
+                        }
+                        if(backGroundMode == 2) {
+                            ColorPicker("Select Color", selection: $color)
+                        }
+                        if(backGroundMode == 3) {
+                            Text("Select Image")
+                        }
+                    }
+                    .padding()
+                    Spacer()
                 }
-                if(backGroundMode == 2) {
-                    ColorPicker("Select Color", selection: $color)
+                .frame(width:350)
+            }
+            
+            VStack (alignment:.leading) {
+                Button {
+                    
+                    let model = VideoMatting()
+                    model.videoRemoveBackground()
+                    
+                } label: {
+                    Text("Select video...")
                 }
-                if(backGroundMode == 3) {
-                    Text("Select Image")
+                .padding(.bottom)
+                Button {
+                    
+                    let model = VideoMatting()
+                    model.videoRemoveBackground()
+                    
+                } label: {
+                    Text("Save as...")
                 }
             }
-            .padding()
-            Button {
-                
-                let model = VideoMatting()
-                model.videoRemoveBackground()
-                
-            } label: {
-                Text("Video remove background")
-            }
-            Spacer()
         }
+        .padding()
     }
     
     var imageView : some View {
@@ -156,6 +173,17 @@ struct ContentView: View {
                     .padding()
             }
             .disabled(self.imageProcessing)
+            .padding()
+
+            Button {
+                let pasteboard = NSPasteboard.general
+                pasteboard.clearContents()
+                let copiedObjects = NSArray(object: self.imageBackgroundRemoved!)
+                pasteboard.writeObjects(copiedObjects as! [NSPasteboardWriting])
+            } label: {
+                Text("Copy to clipboard")
+            }
+            .disabled(self.imageBackgroundRemoved == nil)
             .padding()
 
             Button {
