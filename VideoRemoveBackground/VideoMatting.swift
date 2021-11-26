@@ -12,22 +12,6 @@ import CoreImage
 import AVFoundation
 import AVKit
 
-
-
-func pixelBuffer2Image(buffer:CVPixelBuffer) -> NSImage {
-    
-    let ciImage = CIImage.init(cvPixelBuffer: buffer)
-    return ciImage2Image(ciImage: ciImage)
-}
-
-func ciImage2Image(ciImage:CIImage) -> NSImage {
-    
-    let rep = NSCIImageRep(ciImage: ciImage)
-    let nsImage = NSImage(size: rep.size)
-    nsImage.addRepresentation(rep)
-    return nsImage
-}
-
 class VideoMatting: NSObject {
 
     func imageRemoveBackGround(srcImage:NSImage) -> NSImage? {
@@ -42,7 +26,7 @@ class VideoMatting: NSObject {
         
         guard let result = try? model.prediction(input: input) else {return nil}
         
-        guard let transImage = makeTransparentImage(imageBuffer: result.fgr, maskBuffer: result.pha) else {return nil}
+        guard let transImage = makeTransparentImage(imageBuffer: result.fgr, maskBuffer: result.pha)?.toImage() else {return nil}
         if srcImage.size == transImage.size {
             
             return transImage
@@ -51,7 +35,7 @@ class VideoMatting: NSObject {
         return resizedImage
     }
         
-    func makeTransparentImage(imageBuffer:CVPixelBuffer, maskBuffer:CVPixelBuffer) -> NSImage? {
+    func makeTransparentImage(imageBuffer:CVPixelBuffer, maskBuffer:CVPixelBuffer) -> CIImage? {
         
         let fgrImage = CIImage.init(cvPixelBuffer: imageBuffer)
         let maskImage = CIImage.init(cvPixelBuffer: maskBuffer)
@@ -62,7 +46,7 @@ class VideoMatting: NSObject {
         blendFilter.setValue(fgrImage, forKey: kCIInputImageKey)
         blendFilter.setValue(alphaMaskImage, forKey: kCIInputMaskImageKey)
         guard let outImage = blendFilter.outputImage else {return nil}
-        return ciImage2Image(ciImage: outImage)
+        return outImage
     }
     
     //TODO: 完成视频处理能力

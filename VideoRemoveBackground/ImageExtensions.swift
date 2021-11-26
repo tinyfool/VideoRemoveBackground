@@ -131,3 +131,22 @@ extension NSImage {
         }
     }
 }
+extension CVPixelBuffer {
+    
+    func toImage() -> NSImage {
+        let ciImage = CIImage.init(cvPixelBuffer: self)
+        return ciImage.toImage()
+    }
+}
+
+extension CIImage {
+    
+    func toImage() -> NSImage {
+        
+        let rep = NSCIImageRep(ciImage: self)
+        let nsImage = NSImage(size: rep.size)
+        nsImage.addRepresentation(rep)
+        return nsImage
+    }
+}
+
