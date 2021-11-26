@@ -59,6 +59,25 @@ extension NSImage {
         return nil
     }
     
+    func fastResize(size:NSSize) -> NSImage? {
+        
+        guard let image = self.cgImage(forProposedRect: nil
+                                       , context: nil, hints: nil) else {return nil}
+        let context = CGContext(data: nil,
+                                width: Int(size.width),
+                                height: Int(size.height),
+                                bitsPerComponent: image.bitsPerComponent,
+                                bytesPerRow: 0,
+                                space: image.colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!,
+                                bitmapInfo: image.bitmapInfo.rawValue)
+        context?.interpolationQuality = .high
+        context?.draw(image, in: CGRect(origin: .zero, size: size))
+
+        guard let scaledImage = context?.makeImage() else { return nil }
+
+        return NSImage(cgImage: scaledImage, size: size)
+    }
+    
     ///  Copies the current image and resizes it to the size of the given NSSize, while
     ///  maintaining the aspect ratio of the original image.
     ///

@@ -31,7 +31,7 @@ class VideoMatting: NSObject {
             
             return transImage
         }
-        let resizedImage = transImage.copy(size: srcImage.size)
+        let resizedImage = transImage.fastResize(size: srcImage.size)
         return resizedImage
     }
         
