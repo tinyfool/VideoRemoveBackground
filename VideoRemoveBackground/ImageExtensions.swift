@@ -177,6 +177,27 @@ extension NSImage {
         guard let data = imageRep?.representation(using: .png, properties: [:]) else {return}
         try? data.write(to: file)
     }
+    
+    func ciImage() -> CIImage? {
+        
+        guard let data = self.tiffRepresentation,
+              let bitmap = NSBitmapImageRep(data: data) else {
+            return nil
+        }
+        let ci = CIImage(bitmapImageRep: bitmap)
+        return ci
+    }
+
+    func blurImage(radius:CGFloat) -> NSImage? {
+        
+        guard let ciImage = self.ciImage() else {return nil}
+        guard let blurFilter = CIFilter(name: "CIBoxBlur") else {return self}
+        blurFilter.setValue(ciImage, forKey: kCIInputImageKey)
+        blurFilter.setValue(radius, forKey: kCIInputRadiusKey)
+        guard let outputImage = blurFilter.outputImage else {return self}
+        return outputImage.toImage()
+    }
+
 }
 
 extension CVPixelBuffer {

@@ -26,9 +26,7 @@ struct VideoEditorView: View {
     @State private var color = Color.green
 
     @State private var colorImage:NSImage?
-    
-    @State private var backgroundImage:NSImage?
-    
+        
     private var model = VideoMatting()
     
     var body: some View {
@@ -54,12 +52,22 @@ struct VideoEditorView: View {
                 
                 ImageVideoRect()
             }
-            if self.imagePreview != nil {
+            if self.imageTransparent != nil {
                 
-                Image(nsImage: self.imagePreview!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 384, height: 216, alignment: Alignment.center)
+                ZStack {
+                    if self.backGroundMode == 2 {
+                        
+                        Image(nsImage: self.colorImage!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 384, height: 216, alignment: Alignment.center)
+                        
+                    }
+                    Image(nsImage: self.imageTransparent!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 384, height: 216, alignment: Alignment.center)
+                }
             }else {
                 ZStack {
                     if self.videoFirstImageProcessing {
@@ -81,29 +89,15 @@ struct VideoEditorView: View {
                 Picker(selection: $backGroundMode, label: Text("Mode")) {
                     Text("Transparent").tag(1)
                     Text("Color").tag(2)
-                    Text("Image").tag(3)
                 }
                 .pickerStyle(RadioGroupPickerStyle())
                 .padding()
-                .onChange(of: backGroundMode) { mode in
-                    if(mode != 3 || self.backgroundImage != nil) {
-                        rebuildPreviewImage()
-                    }
-                }
                 VStack {
                     if(backGroundMode == 2) {
                         ColorPicker("Select Color", selection: $color)
                             .onChange(of: color) { color in
-                                self.colorImage = nil
-                                rebuildPreviewImage()
+                                self.colorImage = NSImage.imageWithColor(color: NSColor(color), size:self.imageTransparent!.size)
                             }
-                    }
-                    if(backGroundMode == 3) {
-                        Button {
-                            SelectBackgroundImage()
-                        } label: {
-                            Text("Select Image")
-                        }
                     }
                 }
                 .padding()
@@ -151,7 +145,7 @@ struct VideoEditorView: View {
                     let newImage =
                     self.model.imageRemoveBackGround(srcImage: self.videoFirstImage!)
                     self.imageTransparent = newImage
-                    rebuildPreviewImage()
+                    self.colorImage = NSImage.imageWithColor(color: NSColor(color), size:self.imageTransparent!.size)
                     DispatchQueue.main.async {
                         self.videoFirstImageProcessing = false
                     }
@@ -167,45 +161,7 @@ struct VideoEditorView: View {
         guard let cgImage = try? imageGenerator.copyCGImage(at: CMTime(value: 1, timescale: 30), actualTime: nil) else {return}
         self.videoFirstImage = NSImage(cgImage: cgImage, size: NSSize(width: cgImage.width, height: cgImage.height))
     }
-    
-    fileprivate func rebuildPreviewImage() {
-    
-        var result:NSImage?
         
-        if self.backGroundMode == 1 {
-            result =  self.imageTransparent
-        } else if self.backGroundMode == 2 {
-            if self.colorImage == nil {
-                self.colorImage = NSImage.imageWithColor(color: NSColor(color), size:self.imageTransparent!.size)
-            }
-            result = self.imageTransparent!.putOnImage(backgroundImage: self.colorImage!)
-        } else if self.backGroundMode == 3 {
-            result = self.imageTransparent!.putOnImage(backgroundImage: self.backgroundImage!)
-        }
-        else {
-            result =  self.imageTransparent
-        }
-        
-        DispatchQueue.main.async {
-            self.imagePreview = result
-        }
-    }
-    
-    fileprivate func SelectBackgroundImage() {
-        
-        let panel = NSOpenPanel()
-        panel.allowsMultipleSelection = false
-        panel.canChooseDirectories = false
-        panel.allowedContentTypes = [.image]
-        if panel.runModal() == .OK {
-            guard let imageFile = panel.url else {return}
-            self.backgroundImage = NSImage(contentsOf:imageFile)
-            if self.backgroundImage != nil {
-                rebuildPreviewImage()
-            }
-        }
-    }
-
 }
 
 
