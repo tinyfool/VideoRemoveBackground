@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		158D5AA727508BFE00E76918 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158D5AA627508BFE00E76918 /* ImageExtensions.swift */; };
+		158D5AA927530FB100E76918 /* ImageEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158D5AA827530FB100E76918 /* ImageEditorView.swift */; };
+		158D5AAB27530FFA00E76918 /* VideoEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158D5AAA27530FFA00E76918 /* VideoEditorView.swift */; };
 		15BB7222274DC33000C546EB /* VideoRemoveBackgroundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7221274DC33000C546EB /* VideoRemoveBackgroundApp.swift */; };
 		15BB7224274DC33000C546EB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7223274DC33000C546EB /* ContentView.swift */; };
 		15BB7226274DC33300C546EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BB7225274DC33300C546EB /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		158D5AA627508BFE00E76918 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
+		158D5AA827530FB100E76918 /* ImageEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEditorView.swift; sourceTree = "<group>"; };
+		158D5AAA27530FFA00E76918 /* VideoEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoEditorView.swift; sourceTree = "<group>"; };
 		15BB721E274DC33000C546EB /* VideoRemoveBackground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoRemoveBackground.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BB7221274DC33000C546EB /* VideoRemoveBackgroundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRemoveBackgroundApp.swift; sourceTree = "<group>"; };
 		15BB7223274DC33000C546EB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 				15BB724C274DC38D00C546EB /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel */,
 				15BB7221274DC33000C546EB /* VideoRemoveBackgroundApp.swift */,
 				15BB7223274DC33000C546EB /* ContentView.swift */,
+				158D5AA827530FB100E76918 /* ImageEditorView.swift */,
+				158D5AAA27530FFA00E76918 /* VideoEditorView.swift */,
 				15BB7250274DC74300C546EB /* VideoMatting.swift */,
 				158D5AA627508BFE00E76918 /* ImageExtensions.swift */,
 				15BB7225274DC33300C546EB /* Assets.xcassets */,
@@ -270,6 +276,8 @@
 			files = (
 				15BB7251274DC74300C546EB /* VideoMatting.swift in Sources */,
 				158D5AA727508BFE00E76918 /* ImageExtensions.swift in Sources */,
+				158D5AAB27530FFA00E76918 /* VideoEditorView.swift in Sources */,
+				158D5AA927530FB100E76918 /* ImageEditorView.swift in Sources */,
 				15BB724D274DC38D00C546EB /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel in Sources */,
 				15BB7224274DC33000C546EB /* ContentView.swift in Sources */,
 				15BB7222274DC33000C546EB /* VideoRemoveBackgroundApp.swift in Sources */,

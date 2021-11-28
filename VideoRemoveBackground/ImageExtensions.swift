@@ -149,7 +149,36 @@ extension NSImage {
             try png.write(to: url, options: .atomicWrite)
         }
     }
+    
+    func putOnImage(backgroundImage:NSImage) -> NSImage {
+        
+        let newImage = NSImage(size: self.size)
+        newImage.lockFocus()
+        var newImageRect: CGRect = .zero
+        newImageRect.size = newImage.size
+        backgroundImage.draw(in: newImageRect)
+        self.draw(in: newImageRect)
+        newImage.unlockFocus()
+        return newImage
+    }
+    
+    static func imageWithColor(color:NSColor, size:NSSize) -> NSImage
+    {
+        let newImage = NSImage(size: size)
+        newImage.lockFocus()
+        color.drawSwatch(in: NSRect(x:0,y:0,width:size.width,height:size.height))
+        newImage.unlockFocus()
+        return newImage
+    }
+
+    func saveTofile(file:URL) {
+        guard let imageData = self.tiffRepresentation else {return}
+        let imageRep = NSBitmapImageRep(data:imageData)
+        guard let data = imageRep?.representation(using: .png, properties: [:]) else {return}
+        try? data.write(to: file)
+    }
 }
+
 extension CVPixelBuffer {
     
     func toImage() -> NSImage {
