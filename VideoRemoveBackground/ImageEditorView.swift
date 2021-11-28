@@ -20,13 +20,14 @@ struct ImageEditorView: View {
     
     var body: some View {
         VStack(alignment:.center) {
-            imageView
-            imageViewButtons
+            imagePreview
+            buttonsPanel
             Spacer()
         }
     }
     
-    var imageView : some View {
+    var imagePreview : some View {
+        
         HStack {
             if image != nil {
                 Image(nsImage: image!)
@@ -34,7 +35,7 @@ struct ImageEditorView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 384, height: 216, alignment: Alignment.center)
             } else {
-                ImageVideoRect
+                ImageVideoRect()
             }
             if((imageBackgroundRemoved) != nil) {
                 Image(nsImage: imageBackgroundRemoved!)
@@ -49,45 +50,18 @@ struct ImageEditorView: View {
                             ProgressView()
                         }
                     }
-                    ImageVideoRect
+                    ImageVideoRect()
                 }
             }
         }
         .padding()
     }
     
-    var ImageVideoRect : some View {
-        
-        Rectangle()
-        .frame(width: 384, height: 216, alignment: Alignment.center)
-        .foregroundColor(.clear)
-        .border(.black, width: 1)
-    }
-    
-    var imageViewButtons : some View {
+    var buttonsPanel : some View {
         
         HStack {
             Button  {
-                let panel = NSOpenPanel()
-                panel.allowsMultipleSelection = false
-                panel.canChooseDirectories = false
-                panel.allowedContentTypes = [.image]
-                if panel.runModal() == .OK {
-                    guard let imageFile = panel.url else {return}
-                    self.image = NSImage(contentsOf:imageFile)
-                    if self.image != nil {
-                        self.imageBackgroundRemoved = nil
-                        self.imageProcessing = true
-                        DispatchQueue.global(qos: .background).async {
-                            let newImage =
-                            self.model.imageRemoveBackGround(srcImage: self.image!)
-                            DispatchQueue.main.async {
-                                self.imageBackgroundRemoved = newImage
-                                self.imageProcessing = false
-                            }
-                        }
-                    }
-                }
+                openImage()
             } label: {
                 Text("Select Image...")
                     .padding()
@@ -96,10 +70,7 @@ struct ImageEditorView: View {
             .padding()
 
             Button {
-                let pasteboard = NSPasteboard.general
-                pasteboard.clearContents()
-                let copiedObjects = NSArray(object: self.imageBackgroundRemoved!)
-                pasteboard.writeObjects(copiedObjects as! [NSPasteboardWriting])
+                copy2Clipboard()
             } label: {
                 Text("Copy to clipboard")
             }
@@ -107,13 +78,7 @@ struct ImageEditorView: View {
             .padding()
 
             Button {
-                let panel = NSSavePanel()
-                panel.allowedContentTypes = [.png]
-                if panel.runModal() == .OK {
-                    guard let file = panel.url else {return}
-                    guard let imageToSave = self.imageBackgroundRemoved else {return}
-                    imageToSave.saveTofile(file: file)
-                }
+                saveToFile()
             } label: {
                 Text("Save as...")
                     .padding()
@@ -122,12 +87,55 @@ struct ImageEditorView: View {
             .padding()
         }
     }
+    
+    fileprivate func openImage() {
+        
+        let panel = NSOpenPanel()
+        panel.allowsMultipleSelection = false
+        panel.canChooseDirectories = false
+        panel.allowedContentTypes = [.image]
+        if panel.runModal() == .OK {
+            guard let imageFile = panel.url else {return}
+            self.image = NSImage(contentsOf:imageFile)
+            if self.image != nil {
+                self.imageBackgroundRemoved = nil
+                self.imageProcessing = true
+                DispatchQueue.global(qos: .background).async {
+                    let newImage =
+                    self.model.imageRemoveBackGround(srcImage: self.image!)
+                    DispatchQueue.main.async {
+                        self.imageBackgroundRemoved = newImage
+                        self.imageProcessing = false
+                    }
+                }
+            }
+        }
+    }
+    
+    fileprivate func copy2Clipboard() {
+        
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        let copiedObjects = NSArray(object: self.imageBackgroundRemoved!)
+        pasteboard.writeObjects(copiedObjects as! [NSPasteboardWriting])
+    }
+    
+    fileprivate func saveToFile() {
+        let panel = NSSavePanel()
+        panel.allowedContentTypes = [.png]
+        if panel.runModal() == .OK {
+            guard let file = panel.url else {return}
+            guard let imageToSave = self.imageBackgroundRemoved else {return}
+            imageToSave.saveTofile(file: file)
+        }
+    }
+
 }
 
 struct ImageEditorView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView()
+            ImageEditorView()
         }
     }
 }

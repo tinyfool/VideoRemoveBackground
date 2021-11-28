@@ -27,6 +27,17 @@ struct ContentView: View {
     
 }
 
+struct ImageVideoRect : View {
+    
+    var body : some View {
+    
+        Rectangle()
+        .frame(width: 384, height: 216, alignment: Alignment.center)
+        .foregroundColor(.clear)
+        .border(.black, width: 1)
+    }
+}
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
