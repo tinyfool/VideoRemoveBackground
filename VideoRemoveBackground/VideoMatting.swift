@@ -46,9 +46,15 @@ class VideoMatting: NSObject {
         let timeRange = CMTimeRange(start: .zero, duration: asset.duration)
         
         guard let videoTrack = avComposition.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid) else {return}
-        
+
+        guard let audioTrack = avComposition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid) else {return}
+
         if  let sourceTrack = asset.tracks(withMediaType: .video).first {
             try? videoTrack.insertTimeRange(timeRange, of: sourceTrack, at: .zero)
+        }
+        
+        if  let sourceTrack = asset.tracks(withMediaType: .audio).first {
+            try? audioTrack.insertTimeRange(timeRange, of: sourceTrack, at: .zero)
         }
         
         var instructionLayers = [AVMutableVideoCompositionLayerInstruction]()
@@ -91,7 +97,6 @@ class VideoMatting: NSObject {
                 }
                 onProgressUpdate(exportSession.progress)
             }
-            
         }
     }
 }
