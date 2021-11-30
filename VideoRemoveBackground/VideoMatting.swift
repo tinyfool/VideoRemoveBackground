@@ -50,20 +50,15 @@ class VideoMatting: NSObject {
     }
     
     //TODO: 完成视频处理能力
-    func videoRemoveBackground() {
-        
-        guard let url = Bundle.main.url(forResource: "my30", withExtension: "mp4") else {
-            fatalError("The required video asset wasn't found in the app bundle.")
-        }
-        
-        let asset = AVAsset(url: url)
+    func videoRemoveBackground(srcURL:URL,destURL:URL,color:Color?,onProgressUpdate: @escaping (Float) -> Void, onFinished:@escaping ()->Void) {
+                
+        let asset = AVAsset(url: srcURL)
         
         let avComposition = AVMutableComposition()
         
         let timeRange = CMTimeRange(start: .zero, duration: asset.duration)
         
         guard let videoTrack = avComposition.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid) else {return}
-        
         
         if  let sourceTrack = asset.tracks(withMediaType: .video).first {
             try? videoTrack.insertTimeRange(timeRange, of: sourceTrack, at: .zero)
@@ -88,7 +83,7 @@ class VideoMatting: NSObject {
             fatalError("Unable to create AVAssetExportSession.")
         }
         exportSession.videoComposition = videoComposition
-        exportSession.outputURL = URL(fileURLWithPath: "/tmp/temp.mp4")
+        exportSession.outputURL = destURL
         exportSession.exportAsynchronously {
             if [.completed].contains(exportSession.status) {
                 print("exportSession completed")
@@ -99,9 +94,18 @@ class VideoMatting: NSObject {
             if [.cancelled].contains(exportSession.status) {
                 print("exportSession cancelled")
             }
-
         }
+        DispatchQueue.main.async {
 
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                if [.completed, .failed, .cancelled].contains(exportSession.status) {
+                    timer.invalidate()
+                    onFinished()
+                }
+                onProgressUpdate(exportSession.progress)
+            }
+            
+        }
     }
 }
 
@@ -149,7 +153,6 @@ class RemoveBackgroundCompositor:NSObject, AVVideoCompositing {
             print("No valid track IDs found in composition instruction.")
             return
         }
-        
         let sourceCount = requiredTrackIDs.count
 
         if sourceCount > 1 {

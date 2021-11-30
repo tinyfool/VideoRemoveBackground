@@ -17,26 +17,66 @@ struct VideoEditorView: View {
     
     @State private var videoUrl:URL?
     @State private var videoAsset:AVAsset?
-    @State private var videoFirstImage:NSImage?
+    @State private var firstImage:NSImage?
     @State private var imageTransparent:NSImage?
-    @State private var imagePreview:NSImage?
-
-    @State private var videoFirstImageProcessing = false
+    @State private var firstImageProcessing = false
     
     @State private var color = Color.green
-
     @State private var colorImage:NSImage?
+    
+    @State private var processing = false
+    @State private var progress:Float = 0.0
+    
+    @State var startTime:TimeInterval?
+    
+    var progressPercentage: String {
         
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.maximumFractionDigits = 1
+        return formatter.string(from: NSNumber(value:self.progress )) ?? "0%"
+    }
+
+    var estimatedTime:String {
+        
+        if self.startTime == nil {
+            return ""
+        }
+        let diff = Double(Date().timeIntervalSince1970 - self.startTime!)
+        if diff < 5 {
+            return ""
+        }
+        if self.progress == 0 {
+            return ""
+        }
+        let et = Int((diff / Double(self.progress))*( 1 - Double(self.progress)))
+        var seconds = et % 60
+        var minutes = (et / 60) % 60
+        var hours = (et / 3600)
+        var day = (et/3600/24)
+        if day > 0 {
+            return "Estimated Time:\(day)D\(hours)H\(minutes)M\(seconds)S"
+
+        }else if hours > 0 {
+            return "Estimated Time:\(hours)H\(minutes)M\(seconds)S"
+
+        }else if (minutes > 0) {
+            return "Estimated Time:\(minutes)M\(seconds)S"
+        }else {
+            return "Estimated Time:\(seconds)S"
+        }
+    }
+    
     private var model = VideoMatting()
     
     var body: some View {
         VStack {
-            videoPreview
+            videoPreview.disabled(self.processing)
             HStack {
                 optionsPanel
                     .disabled(self.videoUrl == nil ||
-                        self.videoFirstImageProcessing)
-                buttonsPanel
+                              self.firstImageProcessing || self.processing)
+                buttonsPanel.disabled(self.processing)
             }
             Spacer()
         }
@@ -61,7 +101,6 @@ struct VideoEditorView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 384, height: 216, alignment: Alignment.center)
-                        
                     }
                     Image(nsImage: self.imageTransparent!)
                         .resizable()
@@ -70,7 +109,7 @@ struct VideoEditorView: View {
                 }
             }else {
                 ZStack {
-                    if self.videoFirstImageProcessing {
+                    if self.firstImageProcessing {
                         VStack {
                             Text("loading preview...")
                             ProgressView()
@@ -118,10 +157,16 @@ struct VideoEditorView: View {
             .padding(.top)
             .padding(.bottom)
             Button {
-                
-                
+                saveToFile()
             } label: {
                 Text("Save as...")
+            }
+            .padding(.bottom)
+            if self.processing {
+                Text(self.progressPercentage)
+                Text(self.estimatedTime)
+                ProgressView(value: self.progress)
+                    .frame(width:200)
             }
             Spacer()
         }
@@ -140,14 +185,14 @@ struct VideoEditorView: View {
             self.videoAsset = AVAsset(url: self.videoUrl!)
             if self.videoAsset != nil {
                 getFirstImage()
-                self.videoFirstImageProcessing = true
+                self.firstImageProcessing = true
                 DispatchQueue.global(qos: .background).async {
                     let newImage =
-                    self.model.imageRemoveBackGround(srcImage: self.videoFirstImage!)
+                    self.model.imageRemoveBackGround(srcImage: self.firstImage!)
                     self.imageTransparent = newImage
                     self.colorImage = NSImage.imageWithColor(color: NSColor(color), size:self.imageTransparent!.size)
                     DispatchQueue.main.async {
-                        self.videoFirstImageProcessing = false
+                        self.firstImageProcessing = false
                     }
                 }
             }
@@ -159,11 +204,36 @@ struct VideoEditorView: View {
         let imageGenerator = AVAssetImageGenerator(asset: self.videoAsset!)
         imageGenerator.appliesPreferredTrackTransform = true
         guard let cgImage = try? imageGenerator.copyCGImage(at: CMTime(value: 1, timescale: 30), actualTime: nil) else {return}
-        self.videoFirstImage = NSImage(cgImage: cgImage, size: NSSize(width: cgImage.width, height: cgImage.height))
+        self.firstImage = NSImage(cgImage: cgImage, size: NSSize(width: cgImage.width, height: cgImage.height))
     }
-        
-}
+    
+    fileprivate func saveToFile() {
+        let panel = NSSavePanel()
+        panel.allowedContentTypes = [.mpeg4Movie]
+        if panel.runModal() == .OK {
+            guard let destUrl = panel.url else { return }
+            var color:Color?
+            if self.backGroundMode == 2 {
+                color = self.color
+            }
+            self.processing = true
+            self.startTime = Date().timeIntervalSince1970
+            DispatchQueue.global(qos: .background).async {
 
+                model.videoRemoveBackground(srcURL: self.videoUrl!, destURL: destUrl, color: color, onProgressUpdate: {progress in
+                    DispatchQueue.main.async {
+                        self.progress = progress
+                    }
+                }) {
+                    DispatchQueue.main.async {
+                        self.processing = false
+                        self.startTime = nil
+                    }
+                }
+            }
+        }
+    }
+}
 
 struct VideoEditorView_Previews: PreviewProvider {
     static var previews: some View {
