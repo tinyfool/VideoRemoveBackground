@@ -26,7 +26,7 @@ class VideoMatting: NSObject {
         
         guard let result = try? model.prediction(input: input) else {return nil}
         
-        guard let transImage = makeTransparentImage(imageBuffer: result.fgr, maskBuffer: result.pha)?.toImage() else {return nil}
+        guard let transImage = result.fgr.makeTransparentImage(maskBuffer: result.pha)?.toImage() else {return nil}
         if srcImage.size == transImage.size {
             
             return transImage
@@ -35,19 +35,6 @@ class VideoMatting: NSObject {
         return resizedImage
     }
         
-    func makeTransparentImage(imageBuffer:CVPixelBuffer, maskBuffer:CVPixelBuffer) -> CIImage? {
-        
-        let fgrImage = CIImage.init(cvPixelBuffer: imageBuffer)
-        let maskImage = CIImage.init(cvPixelBuffer: maskBuffer)
-        guard let maskFilter = CIFilter(name: "CIMaskToAlpha") else {return nil}
-        maskFilter.setValue(maskImage, forKey: kCIInputImageKey)
-        let alphaMaskImage = maskFilter.outputImage
-        guard let blendFilter = CIFilter(name: "CIBlendWithAlphaMask") else {return nil}
-        blendFilter.setValue(fgrImage, forKey: kCIInputImageKey)
-        blendFilter.setValue(alphaMaskImage, forKey: kCIInputMaskImageKey)
-        guard let outImage = blendFilter.outputImage else {return nil}
-        return outImage
-    }
     
     //TODO: 完成视频处理能力
     func videoRemoveBackground(srcURL:URL,destURL:URL,color:Color?,onProgressUpdate: @escaping (Float) -> Void, onFinished:@escaping ()->Void) {
@@ -79,7 +66,7 @@ class VideoMatting: NSObject {
         videoComposition.customVideoCompositorClass = RemoveBackgroundCompositor.self
 
         guard let exportSession = AVAssetExportSession(asset: avComposition,
-                                                       presetName: AVAssetExportPreset1920x1080) else {
+                                                       presetName: AVAssetExportPresetHEVC1920x1080WithAlpha) else {
             fatalError("Unable to create AVAssetExportSession.")
         }
         exportSession.videoComposition = videoComposition
@@ -149,6 +136,12 @@ class RemoveBackgroundCompositor:NSObject, AVVideoCompositing {
     
     func startRequest(_ request: AVAsynchronousVideoCompositionRequest) {
         
+        guard let outputPixelBuffer = request.renderContext.newPixelBuffer() else {
+            print("No valid pixel buffer found. Returning.")
+            request.finish(with: CustomCompositorError.ciFilterFailedToProduceOutputImage)
+            return
+        }
+
         guard let requiredTrackIDs = request.videoCompositionInstruction.requiredSourceTrackIDs, !requiredTrackIDs.isEmpty else {
             print("No valid track IDs found in composition instruction.")
             return
@@ -169,7 +162,17 @@ class RemoveBackgroundCompositor:NSObject, AVVideoCompositing {
                 request.finish(with: CustomCompositorError.CoreMLError)
                 return
             }
-            request.finish(withComposedVideoFrame: result.pha)
+            guard let resultImage = result.fgr.makeTransparentImage(maskBuffer: result.pha) else {
+                request.finish(with: CustomCompositorError.CoreMLError)
+                return
+            }
+            let renderDestination = CIRenderDestination(pixelBuffer: outputPixelBuffer)
+            do {
+                try coreImageContext.startTask(toRender: resultImage, to: renderDestination)
+            } catch {
+                print("Error starting request: \(error)")
+            }
+            request.finish(withComposedVideoFrame: outputPixelBuffer)
         }
     }
 }

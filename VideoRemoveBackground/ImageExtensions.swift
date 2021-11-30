@@ -206,6 +206,20 @@ extension CVPixelBuffer {
         let ciImage = CIImage.init(cvPixelBuffer: self)
         return ciImage.toImage()
     }
+    
+    func makeTransparentImage(maskBuffer:CVPixelBuffer) -> CIImage? {
+        
+        let fgrImage = CIImage.init(cvPixelBuffer: self)
+        let maskImage = CIImage.init(cvPixelBuffer: maskBuffer)
+        guard let maskFilter = CIFilter(name: "CIMaskToAlpha") else {return nil}
+        maskFilter.setValue(maskImage, forKey: kCIInputImageKey)
+        let alphaMaskImage = maskFilter.outputImage
+        guard let blendFilter = CIFilter(name: "CIBlendWithAlphaMask") else {return nil}
+        blendFilter.setValue(fgrImage, forKey: kCIInputImageKey)
+        blendFilter.setValue(alphaMaskImage, forKey: kCIInputMaskImageKey)
+        guard let outImage = blendFilter.outputImage else {return nil}
+        return outImage
+    }
 }
 
 extension CIImage {

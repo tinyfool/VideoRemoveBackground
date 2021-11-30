@@ -52,10 +52,10 @@ struct VideoEditorView: View {
             return ""
         }
         let et = Int((diff / Double(self.progress))*( 1 - Double(self.progress)))
-        var seconds = et % 60
-        var minutes = (et / 60) % 60
-        var hours = (et / 3600)
-        var day = (et/3600/24)
+        let seconds = et % 60
+        let minutes = (et / 60) % 60
+        let hours = (et / 3600)
+        let day = (et/3600/24)
         if day > 0 {
             return "Estimated Time:\(day)D\(hours)H\(minutes)M\(seconds)S"
 
