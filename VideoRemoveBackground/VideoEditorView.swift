@@ -151,20 +151,19 @@ struct VideoEditorView: View {
     var buttonsPanel : some View {
         
         VStack (alignment:.leading) {
-            Button {
-                
-                openVideo()
-            } label: {
-                Text("Select video...")
+            HStack {
+                Button {
+                    
+                    openVideo()
+                } label: {
+                    Text("Select video...")
+                }
+                Button {
+                    saveToFile()
+                } label: {
+                    Text("Save as...")
+                }
             }
-            .padding(.top)
-            .padding(.bottom)
-            Button {
-                saveToFile()
-            } label: {
-                Text("Save as...")
-            }
-            .padding(.bottom)
             if self.processing {
                 Text(self.progressPercentage)
                 Text(self.estimatedTime)
