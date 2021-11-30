@@ -75,9 +75,7 @@ struct VideoEditorView: View {
         VStack {
             videoPreview.disabled(self.processing)
             HStack {
-                optionsPanel
-                    .disabled(self.videoUrl == nil ||
-                              self.firstImageProcessing || self.processing)
+                //optionsPanel.disabled(self.videoUrl == nil || self.firstImageProcessing || self.processing)
                 buttonsPanel.disabled(self.processing)
             }
             Spacer()
@@ -234,6 +232,7 @@ struct VideoEditorView: View {
                     DispatchQueue.main.async {
                         self.processing = false
                         self.startTime = nil
+                        self.progress = 0.0
                     }
                 }
             }
