@@ -16,6 +16,8 @@ struct VideoEditorView: View {
     @State private var backGroundMode = 1
     
     @State private var videoUrl:URL?
+    @State var player = AVPlayer()
+
     @State private var videoAsset:AVAsset?
     @State private var firstImage:NSImage?
     @State private var imageTransparent:NSImage?
@@ -86,7 +88,10 @@ struct VideoEditorView: View {
         
         HStack {
             if videoAsset != nil {
-                VideoPlayer(player: AVPlayer(url:  self.videoUrl!))
+                VideoPlayer(player: self.player)
+                    .onAppear(perform: {
+                        self.player = AVPlayer(url: self.videoUrl!)
+                    })
                     .frame(width: 384,height: 216)
             } else {
                 
