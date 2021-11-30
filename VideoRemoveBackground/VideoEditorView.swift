@@ -188,6 +188,7 @@ struct VideoEditorView: View {
             guard let videoFile = panel.url else {return}
             self.videoUrl = videoFile
             self.videoAsset = AVAsset(url: self.videoUrl!)
+            self.player = AVPlayer(url: self.videoUrl!)
             if self.videoAsset != nil {
                 getFirstImage()
                 self.firstImageProcessing = true
