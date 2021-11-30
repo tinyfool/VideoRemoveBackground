@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "15BB721D274DC33000C546EB"
                BuildableName = "VideoRemoveBackground.app"
-               BlueprintName = "VideoRemoveBackground"
-               ReferencedContainer = "container:VideoRemoveBackground.xcodeproj">
+               BlueprintName = "FreeGreenScreen"
+               ReferencedContainer = "container:FreeGreenScreen.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "15BB722E274DC33300C546EB"
                BuildableName = "VideoRemoveBackgroundTests.xctest"
-               BlueprintName = "VideoRemoveBackgroundTests"
-               ReferencedContainer = "container:VideoRemoveBackground.xcodeproj">
+               BlueprintName = "FreeGreenScreenTests"
+               ReferencedContainer = "container:FreeGreenScreen.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -44,8 +44,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "15BB7238274DC33300C546EB"
                BuildableName = "VideoRemoveBackgroundUITests.xctest"
-               BlueprintName = "VideoRemoveBackgroundUITests"
-               ReferencedContainer = "container:VideoRemoveBackground.xcodeproj">
+               BlueprintName = "FreeGreenScreenUITests"
+               ReferencedContainer = "container:FreeGreenScreen.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -66,8 +66,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "15BB721D274DC33000C546EB"
             BuildableName = "VideoRemoveBackground.app"
-            BlueprintName = "VideoRemoveBackground"
-            ReferencedContainer = "container:VideoRemoveBackground.xcodeproj">
+            BlueprintName = "FreeGreenScreen"
+            ReferencedContainer = "container:FreeGreenScreen.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -83,8 +83,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "15BB721D274DC33000C546EB"
             BuildableName = "VideoRemoveBackground.app"
-            BlueprintName = "VideoRemoveBackground"
-            ReferencedContainer = "container:VideoRemoveBackground.xcodeproj">
+            BlueprintName = "FreeGreenScreen"
+            ReferencedContainer = "container:FreeGreenScreen.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

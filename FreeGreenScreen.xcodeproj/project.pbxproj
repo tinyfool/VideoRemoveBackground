@@ -42,15 +42,15 @@
 		158D5AA627508BFE00E76918 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		158D5AA827530FB100E76918 /* ImageEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEditorView.swift; sourceTree = "<group>"; };
 		158D5AAA27530FFA00E76918 /* VideoEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoEditorView.swift; sourceTree = "<group>"; };
-		15BB721E274DC33000C546EB /* VideoRemoveBackground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoRemoveBackground.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		15BB721E274DC33000C546EB /* FreeGreenScreen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeGreenScreen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BB7221274DC33000C546EB /* VideoRemoveBackgroundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRemoveBackgroundApp.swift; sourceTree = "<group>"; };
 		15BB7223274DC33000C546EB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		15BB7225274DC33300C546EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15BB7228274DC33300C546EB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		15BB722A274DC33300C546EB /* VideoRemoveBackground.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VideoRemoveBackground.entitlements; sourceTree = "<group>"; };
-		15BB722F274DC33300C546EB /* VideoRemoveBackgroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoRemoveBackgroundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15BB722F274DC33300C546EB /* FreeGreenScreenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeGreenScreenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BB7233274DC33300C546EB /* VideoRemoveBackgroundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRemoveBackgroundTests.swift; sourceTree = "<group>"; };
-		15BB7239274DC33300C546EB /* VideoRemoveBackgroundUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoRemoveBackgroundUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15BB7239274DC33300C546EB /* FreeGreenScreenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeGreenScreenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BB723D274DC33300C546EB /* VideoRemoveBackgroundUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRemoveBackgroundUITests.swift; sourceTree = "<group>"; };
 		15BB723F274DC33300C546EB /* VideoRemoveBackgroundUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRemoveBackgroundUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		15BB724C274DC38D00C546EB /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel; path = ../../../Downloads/rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel; sourceTree = "<group>"; };
@@ -95,9 +95,9 @@
 		15BB721F274DC33000C546EB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				15BB721E274DC33000C546EB /* VideoRemoveBackground.app */,
-				15BB722F274DC33300C546EB /* VideoRemoveBackgroundTests.xctest */,
-				15BB7239274DC33300C546EB /* VideoRemoveBackgroundUITests.xctest */,
+				15BB721E274DC33000C546EB /* FreeGreenScreen.app */,
+				15BB722F274DC33300C546EB /* FreeGreenScreenTests.xctest */,
+				15BB7239274DC33300C546EB /* FreeGreenScreenUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,9 +147,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		15BB721D274DC33000C546EB /* VideoRemoveBackground */ = {
+		15BB721D274DC33000C546EB /* FreeGreenScreen */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 15BB7243274DC33300C546EB /* Build configuration list for PBXNativeTarget "VideoRemoveBackground" */;
+			buildConfigurationList = 15BB7243274DC33300C546EB /* Build configuration list for PBXNativeTarget "FreeGreenScreen" */;
 			buildPhases = (
 				15BB721A274DC33000C546EB /* Sources */,
 				15BB721B274DC33000C546EB /* Frameworks */,
@@ -159,14 +159,14 @@
 			);
 			dependencies = (
 			);
-			name = VideoRemoveBackground;
+			name = FreeGreenScreen;
 			productName = VideoRemoveBackground;
-			productReference = 15BB721E274DC33000C546EB /* VideoRemoveBackground.app */;
+			productReference = 15BB721E274DC33000C546EB /* FreeGreenScreen.app */;
 			productType = "com.apple.product-type.application";
 		};
-		15BB722E274DC33300C546EB /* VideoRemoveBackgroundTests */ = {
+		15BB722E274DC33300C546EB /* FreeGreenScreenTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 15BB7246274DC33300C546EB /* Build configuration list for PBXNativeTarget "VideoRemoveBackgroundTests" */;
+			buildConfigurationList = 15BB7246274DC33300C546EB /* Build configuration list for PBXNativeTarget "FreeGreenScreenTests" */;
 			buildPhases = (
 				15BB722B274DC33300C546EB /* Sources */,
 				15BB722C274DC33300C546EB /* Frameworks */,
@@ -177,14 +177,14 @@
 			dependencies = (
 				15BB7231274DC33300C546EB /* PBXTargetDependency */,
 			);
-			name = VideoRemoveBackgroundTests;
+			name = FreeGreenScreenTests;
 			productName = VideoRemoveBackgroundTests;
-			productReference = 15BB722F274DC33300C546EB /* VideoRemoveBackgroundTests.xctest */;
+			productReference = 15BB722F274DC33300C546EB /* FreeGreenScreenTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		15BB7238274DC33300C546EB /* VideoRemoveBackgroundUITests */ = {
+		15BB7238274DC33300C546EB /* FreeGreenScreenUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 15BB7249274DC33300C546EB /* Build configuration list for PBXNativeTarget "VideoRemoveBackgroundUITests" */;
+			buildConfigurationList = 15BB7249274DC33300C546EB /* Build configuration list for PBXNativeTarget "FreeGreenScreenUITests" */;
 			buildPhases = (
 				15BB7235274DC33300C546EB /* Sources */,
 				15BB7236274DC33300C546EB /* Frameworks */,
@@ -195,9 +195,9 @@
 			dependencies = (
 				15BB723B274DC33300C546EB /* PBXTargetDependency */,
 			);
-			name = VideoRemoveBackgroundUITests;
+			name = FreeGreenScreenUITests;
 			productName = VideoRemoveBackgroundUITests;
-			productReference = 15BB7239274DC33300C546EB /* VideoRemoveBackgroundUITests.xctest */;
+			productReference = 15BB7239274DC33300C546EB /* FreeGreenScreenUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -223,7 +223,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 15BB7219274DC33000C546EB /* Build configuration list for PBXProject "VideoRemoveBackground" */;
+			buildConfigurationList = 15BB7219274DC33000C546EB /* Build configuration list for PBXProject "FreeGreenScreen" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -236,9 +236,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				15BB721D274DC33000C546EB /* VideoRemoveBackground */,
-				15BB722E274DC33300C546EB /* VideoRemoveBackgroundTests */,
-				15BB7238274DC33300C546EB /* VideoRemoveBackgroundUITests */,
+				15BB721D274DC33000C546EB /* FreeGreenScreen */,
+				15BB722E274DC33300C546EB /* FreeGreenScreenTests */,
+				15BB7238274DC33300C546EB /* FreeGreenScreenUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -306,12 +306,12 @@
 /* Begin PBXTargetDependency section */
 		15BB7231274DC33300C546EB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 15BB721D274DC33000C546EB /* VideoRemoveBackground */;
+			target = 15BB721D274DC33000C546EB /* FreeGreenScreen */;
 			targetProxy = 15BB7230274DC33300C546EB /* PBXContainerItemProxy */;
 		};
 		15BB723B274DC33300C546EB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 15BB721D274DC33000C546EB /* VideoRemoveBackground */;
+			target = 15BB721D274DC33000C546EB /* FreeGreenScreen */;
 			targetProxy = 15BB723A274DC33300C546EB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -437,20 +437,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = VideoRemoveBackground/VideoRemoveBackground.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"VideoRemoveBackground/Preview Content\"";
+				DEVELOPMENT_TEAM = BMC43J69VA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ourcoders.VideoRemoveBackground;
+				PRODUCT_BUNDLE_IDENTIFIER = org.tiny4.VideoRemoveBackground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -462,20 +465,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = VideoRemoveBackground/VideoRemoveBackground.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"VideoRemoveBackground/Preview Content\"";
+				DEVELOPMENT_TEAM = BMC43J69VA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ourcoders.VideoRemoveBackground;
+				PRODUCT_BUNDLE_IDENTIFIER = org.tiny4.VideoRemoveBackground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -502,7 +508,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VideoRemoveBackground.app/Contents/MacOS/VideoRemoveBackground";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FreeGreenScreen.app/Contents/MacOS/FreeGreenScreen";
 			};
 			name = Debug;
 		};
@@ -526,7 +532,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VideoRemoveBackground.app/Contents/MacOS/VideoRemoveBackground";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FreeGreenScreen.app/Contents/MacOS/FreeGreenScreen";
 			};
 			name = Release;
 		};
@@ -577,7 +583,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		15BB7219274DC33000C546EB /* Build configuration list for PBXProject "VideoRemoveBackground" */ = {
+		15BB7219274DC33000C546EB /* Build configuration list for PBXProject "FreeGreenScreen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				15BB7241274DC33300C546EB /* Debug */,
@@ -586,7 +592,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		15BB7243274DC33300C546EB /* Build configuration list for PBXNativeTarget "VideoRemoveBackground" */ = {
+		15BB7243274DC33300C546EB /* Build configuration list for PBXNativeTarget "FreeGreenScreen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				15BB7244274DC33300C546EB /* Debug */,
@@ -595,7 +601,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		15BB7246274DC33300C546EB /* Build configuration list for PBXNativeTarget "VideoRemoveBackgroundTests" */ = {
+		15BB7246274DC33300C546EB /* Build configuration list for PBXNativeTarget "FreeGreenScreenTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				15BB7247274DC33300C546EB /* Debug */,
@@ -604,7 +610,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		15BB7249274DC33300C546EB /* Build configuration list for PBXNativeTarget "VideoRemoveBackgroundUITests" */ = {
+		15BB7249274DC33300C546EB /* Build configuration list for PBXNativeTarget "FreeGreenScreenUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				15BB724A274DC33300C546EB /* Debug */,
