@@ -32,6 +32,9 @@ struct VideoEditorView: View {
     @State var startTime:TimeInterval?
     
     @State var showSizeAlert = false
+
+    @State var alertTitle:String?
+    @State var alertMessage:String?
     
     var progressPercentage: String {
         
@@ -82,6 +85,11 @@ struct VideoEditorView: View {
             }
             Spacer()
         }
+        .alert(isPresented: self.$showSizeAlert) {
+            Alert(title: Text(self.alertTitle!),
+                  message: Text(self.alertMessage!),
+                  dismissButton: .default(Text("Got it!")))
+        }
     }
     
     var videoPreview : some View {
@@ -125,9 +133,6 @@ struct VideoEditorView: View {
             }
         }
         .padding()
-        .alert(isPresented: self.$showSizeAlert) {
-            Alert(title: Text("Error Size"), message: Text("We only support 720p,1080p and 4k Video"), dismissButton: .default(Text("Got it!")))
-        }
     }
     
     var optionsPanel : some View {
@@ -190,7 +195,13 @@ struct VideoEditorView: View {
         if panel.runModal() == .OK {
             guard let videoFile = panel.url else {return}
             self.videoUrl = videoFile
-            self.videoAsset = AVAsset(url: self.videoUrl!)
+            let aVideoAsset = AVAsset(url: self.videoUrl!)
+            if !checkVideoSize(aVideoAsset:aVideoAsset) {
+                self.videoUrl = nil
+                self.videoAsset = nil
+                return
+            }
+            self.videoAsset = aVideoAsset
             self.player = AVPlayer(url: self.videoUrl!)
             if self.videoAsset != nil {
                 getFirstImage()
@@ -206,6 +217,23 @@ struct VideoEditorView: View {
                 }
             }
         }
+    }
+    
+    fileprivate func checkVideoSize(aVideoAsset:AVAsset) -> Bool {
+        let videoTrack = aVideoAsset.tracks(withMediaType: .video).first
+        //3840x2160
+        if videoTrack?.naturalSize.width == 3840 && videoTrack?.naturalSize.height == 2160 {
+            
+            return true
+        } else if videoTrack?.naturalSize.width == 1920 && videoTrack?.naturalSize.height == 1080 {
+            return true
+        } else if videoTrack?.naturalSize.width == 1280 && videoTrack?.naturalSize.height == 720 {
+            return true
+        }
+        self.alertTitle = "Error Size"
+        self.alertMessage = "We only support 720p,1080p and 4k Video"
+        self.showSizeAlert = true
+        return false
     }
     
     fileprivate func getFirstImage() {
@@ -227,6 +255,15 @@ struct VideoEditorView: View {
             }
             self.processing = true
             self.startTime = Date().timeIntervalSince1970
+            
+            let aVideoAsset = AVAsset(url: self.videoUrl!)
+            let videoTrack = aVideoAsset.tracks(withMediaType: .video).first
+            if videoTrack?.naturalSize.width == 3840 && videoTrack?.naturalSize.height == 2160 {
+                
+                self.alertTitle = "Warnning"
+                self.alertMessage = "We will resize your video to 1920*1080."
+                self.showSizeAlert = true
+            }
             DispatchQueue.global(qos: .background).async {
 
                 model.videoRemoveBackground(srcURL: self.videoUrl!, destURL: destUrl, color: color, onProgressUpdate: {progress in

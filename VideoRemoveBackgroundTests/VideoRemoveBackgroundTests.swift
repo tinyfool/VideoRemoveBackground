@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import VideoRemoveBackground
+@testable import FreeGreenScreen
 
 class VideoRemoveBackgroundTests: XCTestCase {
 
