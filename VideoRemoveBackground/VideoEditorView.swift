@@ -31,6 +31,8 @@ struct VideoEditorView: View {
     
     @State var startTime:TimeInterval?
     
+    @State var showSizeAlert = false
+    
     var progressPercentage: String {
         
         let formatter = NumberFormatter()
@@ -121,7 +123,11 @@ struct VideoEditorView: View {
                     ImageVideoRect()
                 }
             }
-        }.padding()
+        }
+        .padding()
+        .alert(isPresented: self.$showSizeAlert) {
+            Alert(title: Text("Error Size"), message: Text("We only support 720p,1080p and 4k Video"), dismissButton: .default(Text("Got it!")))
+        }
     }
     
     var optionsPanel : some View {
