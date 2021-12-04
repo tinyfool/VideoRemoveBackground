@@ -11,6 +11,7 @@
 		1505F76F2757C1E80074D68E /* rvm_mobilenetv3_1280x720_s0.375_fp16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1505F76D2757C1E80074D68E /* rvm_mobilenetv3_1280x720_s0.375_fp16.mlmodel */; };
 		1510A806275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_int8.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1510A804275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_int8.mlmodel */; };
 		1510A807275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1510A805275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel */; };
+		1589B3D3275B44B100207D8E /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1589B3D2275B44B100207D8E /* AVKit.framework */; };
 		158D5AA727508BFE00E76918 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158D5AA627508BFE00E76918 /* ImageExtensions.swift */; };
 		158D5AA927530FB100E76918 /* ImageEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158D5AA827530FB100E76918 /* ImageEditorView.swift */; };
 		158D5AAB27530FFA00E76918 /* VideoEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158D5AAA27530FFA00E76918 /* VideoEditorView.swift */; };
@@ -46,6 +47,7 @@
 		1505F76D2757C1E80074D68E /* rvm_mobilenetv3_1280x720_s0.375_fp16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = rvm_mobilenetv3_1280x720_s0.375_fp16.mlmodel; sourceTree = SOURCE_ROOT; };
 		1510A804275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_int8.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = rvm_mobilenetv3_1920x1080_s0.25_int8.mlmodel; sourceTree = SOURCE_ROOT; };
 		1510A805275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel; sourceTree = SOURCE_ROOT; };
+		1589B3D2275B44B100207D8E /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		158D5AA627508BFE00E76918 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		158D5AA827530FB100E76918 /* ImageEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEditorView.swift; sourceTree = "<group>"; };
 		158D5AAA27530FFA00E76918 /* VideoEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoEditorView.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1589B3D3275B44B100207D8E /* AVKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1589B3D1275B44B100207D8E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1589B3D2275B44B100207D8E /* AVKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		15BB7215274DC33000C546EB = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +106,7 @@
 				15BB7232274DC33300C546EB /* VideoRemoveBackgroundTests */,
 				15BB723C274DC33300C546EB /* VideoRemoveBackgroundUITests */,
 				15BB721F274DC33000C546EB /* Products */,
+				1589B3D1275B44B100207D8E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -453,7 +465,7 @@
 				CODE_SIGN_ENTITLEMENTS = VideoRemoveBackground/VideoRemoveBackground.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"VideoRemoveBackground/Preview Content\"";
 				DEVELOPMENT_TEAM = BMC43J69VA;
 				ENABLE_PREVIEWS = YES;
@@ -481,7 +493,7 @@
 				CODE_SIGN_ENTITLEMENTS = VideoRemoveBackground/VideoRemoveBackground.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"VideoRemoveBackground/Preview Content\"";
 				DEVELOPMENT_TEAM = BMC43J69VA;
 				ENABLE_PREVIEWS = YES;
