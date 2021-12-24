@@ -43,7 +43,36 @@ struct VideoEditorView: View {
         formatter.maximumFractionDigits = 1
         return formatter.string(from: NSNumber(value:self.progress )) ?? "0%"
     }
+    
+    func second2TimeString (time:Int) -> String {
+        
+        let seconds = time % 60
+        let minutes = (time / 60) % 60
+        let hours = (time / 3600)
+        let day = (time/3600/24)
+        if day > 0 {
+            return "\(day)D\(hours)H\(minutes)M\(seconds)S"
 
+        }else if hours > 0 {
+            return "\(hours)H\(minutes)M\(seconds)S"
+
+        }else if (minutes > 0) {
+            return "\(minutes)M\(seconds)S"
+        }else {
+            return "\(seconds)S"
+        }
+    }
+
+    var costTime:String {
+        
+        if self.startTime == nil {
+            return ""
+        }
+        let diff = Int(Date().timeIntervalSince1970 - self.startTime!)
+        let timeString = second2TimeString(time: diff)
+        return "Time:\(timeString)"
+    }
+    
     var estimatedTime:String {
         
         if self.startTime == nil {
@@ -57,21 +86,8 @@ struct VideoEditorView: View {
             return ""
         }
         let et = Int((diff / Double(self.progress))*( 1 - Double(self.progress)))
-        let seconds = et % 60
-        let minutes = (et / 60) % 60
-        let hours = (et / 3600)
-        let day = (et/3600/24)
-        if day > 0 {
-            return "Estimated Time:\(day)D\(hours)H\(minutes)M\(seconds)S"
-
-        }else if hours > 0 {
-            return "Estimated Time:\(hours)H\(minutes)M\(seconds)S"
-
-        }else if (minutes > 0) {
-            return "Estimated Time:\(minutes)M\(seconds)S"
-        }else {
-            return "Estimated Time:\(seconds)S"
-        }
+        let timeString = second2TimeString(time: et)
+        return "Estimated Time:\(timeString)"
     }
     
     private var model = VideoMatting()
@@ -177,6 +193,7 @@ struct VideoEditorView: View {
             }
             if self.processing {
                 Text(self.progressPercentage)
+                Text(self.costTime)
                 Text(self.estimatedTime)
                 ProgressView(value: self.progress)
                     .frame(width:200)
@@ -264,7 +281,7 @@ struct VideoEditorView: View {
                 self.alertMessage = "We will resize your video to 1920*1080."
                 self.showSizeAlert = true
             }
-            DispatchQueue.global(qos: .background).async {
+            DispatchQueue.global(qos: .userInteractive).async {
 
                 model.videoRemoveBackground(srcURL: self.videoUrl!, destURL: destUrl, color: color, onProgressUpdate: {progress in
                     DispatchQueue.main.async {
