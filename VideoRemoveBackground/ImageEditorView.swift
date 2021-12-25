@@ -100,7 +100,7 @@ struct ImageEditorView: View {
             if self.image != nil {
                 self.imageBackgroundRemoved = nil
                 self.imageProcessing = true
-                DispatchQueue.global(qos: .background).async {
+                DispatchQueue.global(qos: .userInteractive).async {
                     let newImage =
                     self.model.imageRemoveBackGround(srcImage: self.image!)
                     DispatchQueue.main.async {

@@ -223,7 +223,7 @@ struct VideoEditorView: View {
             if self.videoAsset != nil {
                 getFirstImage()
                 self.firstImageProcessing = true
-                DispatchQueue.global(qos: .background).async {
+                DispatchQueue.global(qos: .userInteractive).async {
                     let newImage =
                     self.model.imageRemoveBackGround(srcImage: self.firstImage!)
                     self.imageTransparent = newImage
