@@ -11,6 +11,7 @@
 		1505F76F2757C1E80074D68E /* rvm_mobilenetv3_1280x720_s0.375_fp16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1505F76D2757C1E80074D68E /* rvm_mobilenetv3_1280x720_s0.375_fp16.mlmodel */; };
 		1510A806275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_int8.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1510A804275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_int8.mlmodel */; };
 		1510A807275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1510A805275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel */; };
+		15719BE62775E6170086605A /* rvm_mobilenetv3_1920x1080_s0.25_int8_ANE.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 15719BE52775E6170086605A /* rvm_mobilenetv3_1920x1080_s0.25_int8_ANE.mlmodel */; };
 		1589B3D3275B44B100207D8E /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1589B3D2275B44B100207D8E /* AVKit.framework */; };
 		158D5AA727508BFE00E76918 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158D5AA627508BFE00E76918 /* ImageExtensions.swift */; };
 		158D5AA927530FB100E76918 /* ImageEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158D5AA827530FB100E76918 /* ImageEditorView.swift */; };
@@ -23,6 +24,7 @@
 		15BB723E274DC33300C546EB /* VideoRemoveBackgroundUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB723D274DC33300C546EB /* VideoRemoveBackgroundUITests.swift */; };
 		15BB7240274DC33300C546EB /* VideoRemoveBackgroundUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB723F274DC33300C546EB /* VideoRemoveBackgroundUITestsLaunchTests.swift */; };
 		15BB7251274DC74300C546EB /* VideoMatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7250274DC74300C546EB /* VideoMatting.swift */; };
+		15CA5E682775E263009E8620 /* rvm_mobilenetv3_1920x1080_s0.25_fp16_ANE.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 15CA5E672775E263009E8620 /* rvm_mobilenetv3_1920x1080_s0.25_fp16_ANE.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,7 @@
 		1505F76D2757C1E80074D68E /* rvm_mobilenetv3_1280x720_s0.375_fp16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = rvm_mobilenetv3_1280x720_s0.375_fp16.mlmodel; sourceTree = SOURCE_ROOT; };
 		1510A804275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_int8.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = rvm_mobilenetv3_1920x1080_s0.25_int8.mlmodel; sourceTree = SOURCE_ROOT; };
 		1510A805275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel; sourceTree = SOURCE_ROOT; };
+		15719BE52775E6170086605A /* rvm_mobilenetv3_1920x1080_s0.25_int8_ANE.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = rvm_mobilenetv3_1920x1080_s0.25_int8_ANE.mlmodel; sourceTree = "<group>"; };
 		1589B3D2275B44B100207D8E /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		158D5AA627508BFE00E76918 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		158D5AA827530FB100E76918 /* ImageEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEditorView.swift; sourceTree = "<group>"; };
@@ -63,6 +66,7 @@
 		15BB723D274DC33300C546EB /* VideoRemoveBackgroundUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRemoveBackgroundUITests.swift; sourceTree = "<group>"; };
 		15BB723F274DC33300C546EB /* VideoRemoveBackgroundUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRemoveBackgroundUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		15BB7250274DC74300C546EB /* VideoMatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMatting.swift; sourceTree = "<group>"; };
+		15CA5E672775E263009E8620 /* rvm_mobilenetv3_1920x1080_s0.25_fp16_ANE.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = rvm_mobilenetv3_1920x1080_s0.25_fp16_ANE.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,8 @@
 				1505F76C2757C1E80074D68E /* rvm_mobilenetv3_1280x720_s0.375_int8.mlmodel */,
 				1510A805275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel */,
 				1510A804275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_int8.mlmodel */,
+				15719BE52775E6170086605A /* rvm_mobilenetv3_1920x1080_s0.25_int8_ANE.mlmodel */,
+				15CA5E672775E263009E8620 /* rvm_mobilenetv3_1920x1080_s0.25_fp16_ANE.mlmodel */,
 				15BB7221274DC33000C546EB /* VideoRemoveBackgroundApp.swift */,
 				15BB7223274DC33000C546EB /* ContentView.swift */,
 				158D5AA827530FB100E76918 /* ImageEditorView.swift */,
@@ -297,11 +303,13 @@
 			files = (
 				15BB7251274DC74300C546EB /* VideoMatting.swift in Sources */,
 				1510A806275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_int8.mlmodel in Sources */,
+				15CA5E682775E263009E8620 /* rvm_mobilenetv3_1920x1080_s0.25_fp16_ANE.mlmodel in Sources */,
 				158D5AA727508BFE00E76918 /* ImageExtensions.swift in Sources */,
 				158D5AAB27530FFA00E76918 /* VideoEditorView.swift in Sources */,
 				158D5AA927530FB100E76918 /* ImageEditorView.swift in Sources */,
 				15BB7224274DC33000C546EB /* ContentView.swift in Sources */,
 				1505F76F2757C1E80074D68E /* rvm_mobilenetv3_1280x720_s0.375_fp16.mlmodel in Sources */,
+				15719BE62775E6170086605A /* rvm_mobilenetv3_1920x1080_s0.25_int8_ANE.mlmodel in Sources */,
 				1505F76E2757C1E80074D68E /* rvm_mobilenetv3_1280x720_s0.375_int8.mlmodel in Sources */,
 				15BB7222274DC33000C546EB /* VideoRemoveBackgroundApp.swift in Sources */,
 				1510A807275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_fp16.mlmodel in Sources */,
