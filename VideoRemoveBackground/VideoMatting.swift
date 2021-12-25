@@ -12,18 +12,23 @@ import CoreImage
 import AVFoundation
 import AVKit
 
+let defaultComputeUnits:MLComputeUnits = .cpuAndGPU
+
 class VideoMatting: NSObject {
 
-    static private var model1080:rvm_mobilenetv3_1920x1080_s0_25_fp16 = {
+    
+    private var model1080:rvm_mobilenetv3_1920x1080_s0_25_fp16 = {
     
         let config = MLModelConfiguration()
+        config.computeUnits = defaultComputeUnits
         let _model1080 = try? rvm_mobilenetv3_1920x1080_s0_25_fp16(configuration:config)
         return _model1080!
     }()
     
-    static private var model720: rvm_mobilenetv3_1280x720_s0_375_fp16 = {
+    private var model720: rvm_mobilenetv3_1280x720_s0_375_fp16 = {
     
         let config = MLModelConfiguration()
+        config.computeUnits = defaultComputeUnits
         let _model720 = try? rvm_mobilenetv3_1280x720_s0_375_fp16(configuration:config)
         return _model720!
     }()
@@ -31,7 +36,7 @@ class VideoMatting: NSObject {
     func model1080Prediction(cgImage:CGImage) -> CIImage? {
         
         guard let input = try? rvm_mobilenetv3_1920x1080_s0_25_fp16Input(srcWith:cgImage, r1i: MLMultiArray(), r2i: MLMultiArray(), r3i: MLMultiArray(), r4i: MLMultiArray()) else {return nil}
-        guard let result = try? VideoMatting.model1080.prediction(input: input) else {return nil}
+        guard let result = try? self.model1080.prediction(input: input) else {return nil}
         guard let transImage = result.fgr.makeTransparentImage(maskBuffer: result.pha) else {return nil}
         return transImage
     }
@@ -39,7 +44,7 @@ class VideoMatting: NSObject {
     func model720Prediction(cgImage:CGImage)  -> CIImage? {
         
         guard let input = try? rvm_mobilenetv3_1280x720_s0_375_fp16Input(srcWith:cgImage, r1i: MLMultiArray(), r2i: MLMultiArray(), r3i: MLMultiArray(), r4i: MLMultiArray()) else {return nil}
-        guard let result = try? VideoMatting.model720.prediction(input: input) else {return nil}
+        guard let result = try? self.model720.prediction(input: input) else {return nil}
         guard let transImage = result.fgr.makeTransparentImage(maskBuffer: result.pha) else {return nil}
         return transImage
     }
@@ -159,16 +164,23 @@ enum CustomCompositorError: Int, Error, LocalizedError {
 
 class RemoveBackgroundCompositor:NSObject, AVVideoCompositing {
     
-    static private var model1080:rvm_mobilenetv3_1920x1080_s0_25_fp16 = {
+    override init(){
+        super.init()
+        print("RemoveBackgroundCompositor init")
+    }
+    
+    private var model1080:rvm_mobilenetv3_1920x1080_s0_25_fp16 = {
     
         let config = MLModelConfiguration()
+        config.computeUnits = defaultComputeUnits
         let _model1080 = try? rvm_mobilenetv3_1920x1080_s0_25_fp16(configuration:config)
         return _model1080!
     }()
     
-    static private var model720: rvm_mobilenetv3_1280x720_s0_375_fp16 = {
+    private var model720: rvm_mobilenetv3_1280x720_s0_375_fp16 = {
     
         let config = MLModelConfiguration()
+        config.computeUnits = defaultComputeUnits
         let _model720 = try? rvm_mobilenetv3_1280x720_s0_375_fp16(configuration:config)
         return _model720!
     }()
@@ -189,7 +201,7 @@ class RemoveBackgroundCompositor:NSObject, AVVideoCompositing {
     func model1080Prediction(pixelBuffer:CVPixelBuffer) -> CIImage? {
         
         guard let input = try? rvm_mobilenetv3_1920x1080_s0_25_fp16Input(src:pixelBuffer, r1i: MLMultiArray(), r2i: MLMultiArray(), r3i: MLMultiArray(), r4i: MLMultiArray()) else {return nil}
-        guard let result = try? RemoveBackgroundCompositor.model1080.prediction(input: input) else {return nil}
+        guard let result = try? self.model1080.prediction(input: input) else {return nil}
         guard let transImage = result.fgr.makeTransparentImage(maskBuffer: result.pha) else {return nil}
         return transImage
     }
@@ -198,7 +210,7 @@ class RemoveBackgroundCompositor:NSObject, AVVideoCompositing {
         
         guard let image = CGImage.create(pixelBuffer: pixelBuffer) else {return nil}
         guard let input = try? rvm_mobilenetv3_1920x1080_s0_25_fp16Input(srcWith:image, r1i: MLMultiArray(), r2i: MLMultiArray(), r3i: MLMultiArray(), r4i: MLMultiArray()) else {return nil}
-        guard let result = try? RemoveBackgroundCompositor.model1080.prediction(input: input) else {return nil}
+        guard let result = try? self.model1080.prediction(input: input) else {return nil}
         guard let transImage = result.fgr.makeTransparentImage(maskBuffer: result.pha) else {return nil}
         return transImage
     }
@@ -207,13 +219,14 @@ class RemoveBackgroundCompositor:NSObject, AVVideoCompositing {
     func model720Prediction(pixelBuffer:CVPixelBuffer)  -> CIImage? {
         
         guard let input = try? rvm_mobilenetv3_1280x720_s0_375_fp16Input(src:pixelBuffer, r1i: MLMultiArray(), r2i: MLMultiArray(), r3i: MLMultiArray(), r4i: MLMultiArray()) else {return nil}
-        guard let result = try? RemoveBackgroundCompositor.model720.prediction(input: input) else {return nil}
+        guard let result = try? self.model720.prediction(input: input) else {return nil}
         guard let transImage = result.fgr.makeTransparentImage(maskBuffer: result.pha) else {return nil}
         return transImage
     }
     
     func startRequest(_ request: AVAsynchronousVideoCompositionRequest) {
         
+        print(Thread.current)
         guard let outputPixelBuffer = request.renderContext.newPixelBuffer() else {
             print("No valid pixel buffer found. Returning.")
             request.finish(with: CustomCompositorError.ciFilterFailedToProduceOutputImage)
