@@ -24,6 +24,7 @@
 		15BB723E274DC33300C546EB /* VideoRemoveBackgroundUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB723D274DC33300C546EB /* VideoRemoveBackgroundUITests.swift */; };
 		15BB7240274DC33300C546EB /* VideoRemoveBackgroundUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB723F274DC33300C546EB /* VideoRemoveBackgroundUITestsLaunchTests.swift */; };
 		15BB7251274DC74300C546EB /* VideoMatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7250274DC74300C546EB /* VideoMatting.swift */; };
+		15C90E6E27781EDC001D271D /* RemoveBackgroundCompositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C90E6D27781EDC001D271D /* RemoveBackgroundCompositor.swift */; };
 		15CA5E682775E263009E8620 /* rvm_mobilenetv3_1920x1080_s0.25_fp16_ANE.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 15CA5E672775E263009E8620 /* rvm_mobilenetv3_1920x1080_s0.25_fp16_ANE.mlmodel */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		15BB723D274DC33300C546EB /* VideoRemoveBackgroundUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRemoveBackgroundUITests.swift; sourceTree = "<group>"; };
 		15BB723F274DC33300C546EB /* VideoRemoveBackgroundUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRemoveBackgroundUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		15BB7250274DC74300C546EB /* VideoMatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMatting.swift; sourceTree = "<group>"; };
+		15C90E6D27781EDC001D271D /* RemoveBackgroundCompositor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveBackgroundCompositor.swift; sourceTree = "<group>"; };
 		15CA5E672775E263009E8620 /* rvm_mobilenetv3_1920x1080_s0.25_fp16_ANE.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = rvm_mobilenetv3_1920x1080_s0.25_fp16_ANE.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +140,7 @@
 				158D5AA827530FB100E76918 /* ImageEditorView.swift */,
 				158D5AAA27530FFA00E76918 /* VideoEditorView.swift */,
 				15BB7250274DC74300C546EB /* VideoMatting.swift */,
+				15C90E6D27781EDC001D271D /* RemoveBackgroundCompositor.swift */,
 				158D5AA627508BFE00E76918 /* ImageExtensions.swift */,
 				15BB7225274DC33300C546EB /* Assets.xcassets */,
 				15BB722A274DC33300C546EB /* VideoRemoveBackground.entitlements */,
@@ -304,6 +307,7 @@
 				15BB7251274DC74300C546EB /* VideoMatting.swift in Sources */,
 				1510A806275682B400DBF849 /* rvm_mobilenetv3_1920x1080_s0.25_int8.mlmodel in Sources */,
 				15CA5E682775E263009E8620 /* rvm_mobilenetv3_1920x1080_s0.25_fp16_ANE.mlmodel in Sources */,
+				15C90E6E27781EDC001D271D /* RemoveBackgroundCompositor.swift in Sources */,
 				158D5AA727508BFE00E76918 /* ImageExtensions.swift in Sources */,
 				158D5AAB27530FFA00E76918 /* VideoEditorView.swift in Sources */,
 				158D5AA927530FB100E76918 /* ImageEditorView.swift in Sources */,
