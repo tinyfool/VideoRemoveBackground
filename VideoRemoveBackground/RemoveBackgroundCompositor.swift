@@ -31,10 +31,6 @@ enum CustomCompositorError: Int, Error, LocalizedError {
 
 class RemoveBackgroundCompositor:NSObject, AVVideoCompositing {
     
-    override init(){
-        super.init()
-        print("RemoveBackgroundCompositor init")
-    }
     
     private var model1080:rvm_mobilenetv3_1920x1080_s0_25_fp16 = {
     
@@ -43,7 +39,7 @@ class RemoveBackgroundCompositor:NSObject, AVVideoCompositing {
         let _model1080 = try? rvm_mobilenetv3_1920x1080_s0_25_fp16(configuration:config)
         return _model1080!
     }()
-    
+        
     private var model720: rvm_mobilenetv3_1280x720_s0_375_fp16 = {
     
         let config = MLModelConfiguration()
@@ -65,14 +61,21 @@ class RemoveBackgroundCompositor:NSObject, AVVideoCompositing {
         return
     }
     
-    func model1080Prediction(pixelBuffer:CVPixelBuffer) -> CIImage? {
+    
+    func model1080PredictionWithModel(model:rvm_mobilenetv3_1920x1080_s0_25_fp16,  pixelBuffer:CVPixelBuffer) -> CIImage? {
         
-        guard let input = try? rvm_mobilenetv3_1920x1080_s0_25_fp16Input(src:pixelBuffer, r1i: MLMultiArray(), r2i: MLMultiArray(), r3i: MLMultiArray(), r4i: MLMultiArray()) else {return nil}
-        guard let result = try? self.model1080.prediction(input: input) else {return nil}
+        let input = rvm_mobilenetv3_1920x1080_s0_25_fp16Input(src:pixelBuffer, r1i: MLMultiArray(), r2i: MLMultiArray(), r3i: MLMultiArray(), r4i: MLMultiArray())
+        let model = self.model1080
+        guard let result = try? model.prediction(input: input) else {return nil}
         guard let transImage = result.fgr.makeTransparentImage(maskBuffer: result.pha) else {return nil}
         return transImage
     }
     
+    func model1080Prediction(pixelBuffer:CVPixelBuffer) -> CIImage? {
+        
+        model1080PredictionWithModel(model: self.model1080, pixelBuffer: pixelBuffer)
+    }
+
     func model1080PredictionWithCGImage(pixelBuffer:CVPixelBuffer) -> CIImage? {
         
         guard let image = CGImage.create(pixelBuffer: pixelBuffer) else {return nil}
@@ -85,7 +88,7 @@ class RemoveBackgroundCompositor:NSObject, AVVideoCompositing {
     
     func model720Prediction(pixelBuffer:CVPixelBuffer)  -> CIImage? {
         
-        guard let input = try? rvm_mobilenetv3_1280x720_s0_375_fp16Input(src:pixelBuffer, r1i: MLMultiArray(), r2i: MLMultiArray(), r3i: MLMultiArray(), r4i: MLMultiArray()) else {return nil}
+        let input = rvm_mobilenetv3_1280x720_s0_375_fp16Input(src:pixelBuffer, r1i: MLMultiArray(), r2i: MLMultiArray(), r3i: MLMultiArray(), r4i: MLMultiArray())
         guard let result = try? self.model720.prediction(input: input) else {return nil}
         guard let transImage = result.fgr.makeTransparentImage(maskBuffer: result.pha) else {return nil}
         return transImage
@@ -93,52 +96,54 @@ class RemoveBackgroundCompositor:NSObject, AVVideoCompositing {
     
     func startRequest(_ request: AVAsynchronousVideoCompositionRequest) {
         
-        print(Thread.current)
-        guard let outputPixelBuffer = request.renderContext.newPixelBuffer() else {
-            print("No valid pixel buffer found. Returning.")
-            request.finish(with: CustomCompositorError.ciFilterFailedToProduceOutputImage)
-            return
-        }
-
-        guard let requiredTrackIDs = request.videoCompositionInstruction.requiredSourceTrackIDs, !requiredTrackIDs.isEmpty else {
-            print("No valid track IDs found in composition instruction.")
-            return
-        }
-        let sourceCount = requiredTrackIDs.count
-
-        if sourceCount > 1 {
-            request.finish(with: CustomCompositorError.notSupportingMoreThanOneSources)
-            return
-        }
-
-        if sourceCount == 1 {
-            let sourceID = requiredTrackIDs[0]
-            let sourceBuffer = request.sourceFrame(byTrackID: sourceID.value(of: Int32.self)!)!
-
-            var resultImage:CIImage?
+        DispatchQueue.global(qos: .userInteractive).async {
             
-            if CVPixelBufferGetHeight(sourceBuffer) == 720 {
-                resultImage = model720Prediction(pixelBuffer: sourceBuffer)
-            } else {
-                if CVPixelBufferGetHeight(sourceBuffer)>1080 {
-                    resultImage = model1080PredictionWithCGImage(pixelBuffer: sourceBuffer)
-                }else {
-                    resultImage = model1080Prediction(pixelBuffer: sourceBuffer)
-                }
-            }
-            
-            if resultImage == nil {
-                request.finish(with: CustomCompositorError.CoreMLError)
+            guard let outputPixelBuffer = request.renderContext.newPixelBuffer() else {
+                print("No valid pixel buffer found. Returning.")
+                request.finish(with: CustomCompositorError.ciFilterFailedToProduceOutputImage)
                 return
             }
-            
-            let renderDestination = CIRenderDestination(pixelBuffer: outputPixelBuffer)
-            do {
-                try coreImageContext.startTask(toRender: resultImage!, to: renderDestination)
-            } catch {
-                print("Error starting request: \(error)")
+
+            guard let requiredTrackIDs = request.videoCompositionInstruction.requiredSourceTrackIDs, !requiredTrackIDs.isEmpty else {  
+                print("No valid track IDs found in composition instruction.")
+                return
             }
-            request.finish(withComposedVideoFrame: outputPixelBuffer)
+            let sourceCount = requiredTrackIDs.count
+
+            if sourceCount > 1 {
+                request.finish(with: CustomCompositorError.notSupportingMoreThanOneSources)
+                return
+            }
+
+            if sourceCount == 1 {
+                let sourceID = requiredTrackIDs[0]
+                let sourceBuffer = request.sourceFrame(byTrackID: sourceID.value(of: Int32.self)!)!
+
+                var resultImage:CIImage?
+                
+                if CVPixelBufferGetHeight(sourceBuffer) == 720 {
+                    resultImage = self.model720Prediction(pixelBuffer: sourceBuffer)
+                } else {
+                    if CVPixelBufferGetHeight(sourceBuffer)>1080 {
+                        resultImage = self.model1080PredictionWithCGImage(pixelBuffer: sourceBuffer)
+                    }else {
+                        resultImage = self.model1080Prediction(pixelBuffer: sourceBuffer)
+                    }
+                }
+                
+                if resultImage == nil {
+                    request.finish(with: CustomCompositorError.CoreMLError)
+                    return
+                }
+                
+                let renderDestination = CIRenderDestination(pixelBuffer: outputPixelBuffer)
+                do {
+                    try self.coreImageContext.startTask(toRender: resultImage!, to: renderDestination)
+                } catch {
+                    print("Error starting request: \(error)")
+                }
+                request.finish(withComposedVideoFrame: outputPixelBuffer)
+            }
         }
     }
 }
